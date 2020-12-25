@@ -11,3 +11,12 @@ for expenseLeft in expenseReport:
          res = expenseLeft * expenseRight
 
 print(res)
+
+for expenseLeft in expenseReport:
+   for expenseRight in expenseReport:
+      for expenseMiddle in expenseReport:
+         expenseSum = expenseLeft + expenseMiddle + expenseRight
+         if(expenseSum == 2020):
+            res = expenseLeft * expenseMiddle * expenseRight
+
+print(res)

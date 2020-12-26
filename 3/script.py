@@ -7,15 +7,28 @@ def parseForest(forest):
         res.append([square for square in row])
 
     return res
-res = 0
+def countEncounteredTrees(slopX, slopY, forest):
+    res = 0
+    bottom = len(forest) - 1
+    modulo = len(forest[0])
+    positionX, positionY = [0,0]
+    while positionY != bottom:
+        positionX = (positionX + slopX)%modulo
+        positionY = positionY + slopY
+        if(forest[positionY][positionX] == "#"):
+            res += 1
+    return res
 forest = parseForest(forest)
-bottom = len(forest) - 1
-modulo = len(forest[0])
-positionX, positionY = [0,0]
-while positionY != bottom:
-    positionX = (positionX + 3)%modulo
-    positionY = positionY + 1
-    if(forest[positionY][positionX] == "#"):
-        res += 1
+print(countEncounteredTrees(3,1,forest))
 
+#part two
+treeEncounteredForSlops = [
+    countEncounteredTrees(1,1,forest),
+    countEncounteredTrees(3,1,forest),
+    countEncounteredTrees(5,1,forest),
+    countEncounteredTrees(7,1,forest),
+    countEncounteredTrees(1,2,forest)
+]
+from functools import reduce
+res = reduce(lambda x,y: x*y, treeEncounteredForSlops)
 print(res)

@@ -1,4 +1,5 @@
 import math
+from functools import reduce
 with open("in") as fIn: 
    seats = fIn.read().split("\n")
 
@@ -37,3 +38,18 @@ for seat in seats:
         max = seatId
 
 print(max)
+
+#part two
+plane = []
+for seat in seats:
+    seatId = getSeatId(seat)
+    plane.append(seatId)
+
+plane.sort()
+for i in range(len(plane)):
+    if i+1 == len(plane):
+        #prevent index error when reaching the end of the plane
+        continue
+    if plane[i]+1 != plane[i+1]:
+        print(plane[i] + 1)
+

@@ -23,3 +23,22 @@ for group in groups:
     res += numberOfYes
 
 print(res)
+
+#part two
+def handleGroup(group):
+    res = 0
+    questions = dict.fromkeys([char for char in "abcdefghijklmnopqrstuvwxyz"], 0)
+    for person in group:
+        for question in person:
+            questions[question] += 1
+    for question, occurence  in questions.items():
+        #print(question, occurence, len(group))
+        if occurence == len(group):
+            res += 1
+    return res
+
+res = 0
+for group in groups:
+    res += handleGroup(group)
+
+print(res)

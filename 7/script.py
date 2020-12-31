@@ -38,3 +38,18 @@ for k,v in bags.items():
         res += checkBag(k, targetBag, bags)
 
 print(res)
+
+#part two
+def countBag(targetColor, bags, amount):
+    amount = []
+    for bag in bags[targetColor]:
+        if bag["amount"] == "no":
+            continue
+        amount.append(int(bag["amount"]))
+        amount.append(int(bag["amount"]) * countBag(bag["color"], bags, amount))
+    return sum(amount)
+
+targetBag = "shiny gold"
+res = countBag(targetBag, bags, 0)
+
+print(res)

@@ -9,8 +9,6 @@ adaptaters.append(0)
 adaptaters.append(max(adaptaters) + 3)
 adaptaters.sort()
 
-print(adaptaters)
-    
 jolts = {
     "#1JoltDiff": 0,
     "#3JoltDiff": 0
@@ -25,3 +23,16 @@ reduce(countJolts,adaptaters)
 res = jolts["#1JoltDiff"] * jolts["#3JoltDiff"]
 
 print(res)
+
+#part two
+#dynamic programming
+dp = [1]
+for i in range(1,len(adaptaters)):
+    ans = 0
+    for j in range(i):
+        if adaptaters[j] + 3 >= adaptaters[i]:
+            ans += dp[j]
+    dp.append(ans)
+
+print(dp[-1])
+
